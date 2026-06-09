@@ -55,12 +55,12 @@ st.markdown("""
 }
 
 .section-card {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
+    background-color: #fefce8;
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid #fde68a;
+    box-shadow: 0px 5px 16px rgba(0,0,0,0.08);
+    margin-bottom: 22px;
 }
 
 .info-box {
@@ -240,21 +240,29 @@ if st.session_state.logged_in == False:
 
     with st.form("login_form"):
 
-        name = st.text_input("Full Name")
-        email = st.text_input("Email")
-        position = st.selectbox(
-            "Position",
-            [
-                "Student",
-                "Supervisor",
-                "Lecturer",
-                "Engineer",
-                "Technician",
-                "Management",
-                "Other"
-            ]
-        )
+    name = st.text_input(
+        "Full Name",
+        placeholder="Example: Siti Irdina Umairah"
+    )
 
+    email = st.text_input(
+        "Email Address",
+        placeholder="Example: sitiirdina@gmail.com"
+    )
+
+    position = st.selectbox(
+        "Position",
+        [
+            "Please select your position",
+            "Student",
+            "Supervisor",
+            "Lecturer",
+            "Engineer",
+            "Technician",
+            "Management",
+            "Other"
+        ]
+    )
         submit = st.form_submit_button("Sign In")
 
         if submit:
