@@ -21,6 +21,43 @@ st.set_page_config(
 # ============================================================
 
 st.markdown("""
+/* Input label */
+div[data-testid="stTextInput"] label,
+div[data-testid="stSelectbox"] label {
+    color: #0f172a !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+/* Text input box */
+div[data-testid="stTextInput"] input {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #2563eb !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+}
+
+/* Placeholder text */
+div[data-testid="stTextInput"] input::placeholder {
+    color: #64748b !important;
+    font-size: 15px !important;
+}
+
+/* Selectbox */
+div[data-testid="stSelectbox"] div {
+    color: #0f172a !important;
+}
+
+/* Sign in button */
+div[data-testid="stFormSubmitButton"] button {
+    background-color: #2563eb !important;
+    color: white !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    padding: 10px 24px !important;
+}
 <style>
 .stApp {
     background-color: #f8fafc;
@@ -55,11 +92,11 @@ st.markdown("""
 }
 
 .section-card {
-    background-color: #fefce8;
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid #fde68a;
-    box-shadow: 0px 5px 16px rgba(0,0,0,0.08);
+    background-color: #eff6ff;
+    padding: 30px;
+    border-radius: 22px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.10);
     margin-bottom: 22px;
 }
 
