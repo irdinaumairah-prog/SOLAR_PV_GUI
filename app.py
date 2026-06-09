@@ -129,22 +129,32 @@ div[data-testid="stTextInput"] input::placeholder {
 }
 
 /* Selectbox - Position box */
-div[data-testid="stSelectbox"] > div > div {
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
     background-color: #ffffff !important;
     color: #0f172a !important;
     border: 2px solid #2563eb !important;
     border-radius: 12px !important;
+    min-height: 48px !important;
     font-size: 16px !important;
 }
 
-/* Selectbox text */
-div[data-testid="stSelectbox"] div {
+/* Selectbox selected text */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] span {
     color: #0f172a !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+/* Selectbox placeholder text */
+div[data-testid="stSelectbox"] div[data-baseweb="select"] div {
+    color: #0f172a !important;
+    opacity: 1 !important;
 }
 
 /* Selectbox dropdown arrow */
 div[data-testid="stSelectbox"] svg {
     color: #2563eb !important;
+    fill: #2563eb !important;
 }
 
 /* Form submit button */
@@ -330,18 +340,18 @@ if st.session_state.logged_in == False:
         )
 
         position = st.selectbox(
-            "Position",
-            [
-                "Please select your position",
-                "Student",
-                "Supervisor",
-                "Lecturer",
-                "Engineer",
-                "Technician",
-                "Management",
-                "Other"
-            ]
-        )
+    "Position",
+    [
+        "Select your position",
+        "Student",
+        "Supervisor",
+        "Lecturer",
+        "Engineer",
+        "Technician",
+        "Management",
+        "Other"
+    ]
+)
 
         submit = st.form_submit_button("Sign In")
 
