@@ -45,6 +45,85 @@ st.markdown("""
     font-size: 16px;
     line-height: 1.7;
 }
+
+/* Global text color for main content */
+section.main,
+section.main p,
+section.main div,
+section.main span,
+section.main label,
+section.main h1,
+section.main h2,
+section.main h3,
+section.main h4,
+section.main h5,
+section.main h6 {
+    color: #0f172a !important;
+}
+
+/* Streamlit markdown text */
+div[data-testid="stMarkdownContainer"] {
+    color: #0f172a !important;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: #0f172a !important;
+}
+
+/* Dataframe and table text */
+div[data-testid="stDataFrame"] {
+    color: #0f172a !important;
+}
+
+/* Metric label and value */
+div[data-testid="stMetric"] {
+    background-color: #ffffff !important;
+    padding: 18px !important;
+    border-radius: 16px !important;
+    border: 1px solid #dbeafe !important;
+    box-shadow: 0px 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+div[data-testid="stMetric"] label,
+div[data-testid="stMetric"] div {
+    color: #0f172a !important;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] {
+    background-color: #eaf2ff !important;
+}
+
+section[data-testid="stSidebar"] * {
+    color: #0f172a !important;
+}
+
+/* Info, success and warning text */
+.info-box,
+.info-box *,
+.success-box,
+.success-box *,
+.warning-box,
+.warning-box * {
+    color: inherit !important;
+}
+
+/* Keep main title text white/gold */
+.main-title,
+.main-title h1,
+.main-title p,
+.main-title b {
+    color: white !important;
+}
+
+.main-title .subtitle {
+    color: #fef3c7 !important;
+}
+
+.main-title .prepared {
+    color: white !important;
+}
 <style>
 
 /* Main app background */
