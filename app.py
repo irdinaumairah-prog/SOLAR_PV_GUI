@@ -337,7 +337,7 @@ with st.form("login_form"):
 # ============================================================
 
 else:
-
+    
     df = load_forecast_data()
 
     st.sidebar.success("Login Successful")
