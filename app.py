@@ -32,7 +32,7 @@ st.markdown("""
 }
 
 .subtitle {
-    font-size: 23px;
+    font-size: 28px;
     color: #f0fdfa;
     font-weight: 500;
 }
@@ -59,7 +59,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
-    st.image("uthm.logo.jpg", width=180)
+    st.image("uthm.logo.jpg.new", width=180)
 
 st.markdown("""
 <div class="main-title">
