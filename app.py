@@ -58,7 +58,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([1,3,1])
 
 with col2:
-    st.image("uthm_logo.png", width=130)
+    st.image("uthm_logo.jpg", width=130)
 
 st.markdown("""
 <div class="main-title">
