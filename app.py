@@ -118,7 +118,7 @@ st.markdown("""
 # HEADER WITH CENTER LOGO
 # ============================================================
 
-logo_file = "uthm_logo.jpg.new"
+logo_file = "uthm.logo.jpg.new"
 
 st.markdown("""
 <div style="
