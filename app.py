@@ -12,7 +12,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 st.set_page_config(
     page_title="Solar PV Forecasting GUI",
-    page_icon="☀️",
+    page_icon="📊",
     layout="wide"
 )
 
@@ -55,10 +55,17 @@ st.markdown("""
 # HEADER
 # ============================================================
 
+col1, col2, col3 = st.columns([1,3,1])
+
+with col2:
+    st.image("uthm_logo.png", width=130)
+
 st.markdown("""
 <div class="main-title">
-    <h1>☀️ Solar PV Output Forecasting System</h1>
-    <p class="subtitle">Deep Learning-Based Forecasting of Solar PV Output for Smart Energy Management</p>
+    <h1>Deep Learning-Based Forecasting of Solar PV Output</h1>
+    <p class="subtitle">for Industrrial Manufacturing Company</p>
+    <p class="subtitle"><b>Prepared by:</b> Siti Irdina Umairah</p>
+    <p class="subtitle"><b>Universiti Tun Hussein Onn Malaysia</b></p>
 </div>
 """, unsafe_allow_html=True)
 
