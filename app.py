@@ -60,10 +60,10 @@ col1, col2, col3 = st.columns([1,3,1])
 with col2:
     import os
 
-if os.path.exists("uthm_logo.jpg"):
-    st.image("uthm_logo.jpg", width=130)
+if os.path.exists("uthm.logo.jpg"):
+    st.image("uthm.logo.jpg", width=130)
 else:
-    st.warning("UTHM logo not found. Please upload uthm_logo.jpg to GitHub.")
+    st.warning("UTHM logo not found. Please upload uthm.logo.jpg to GitHub.")
 
 st.markdown("""
 <div class="main-title">
