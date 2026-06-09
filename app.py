@@ -265,24 +265,26 @@ if st.session_state.logged_in == False:
     )
         submit = st.form_submit_button("Sign In")
 
-        if submit:
-            if name.strip() == "":
-                st.warning("Please enter your full name.")
-            elif email.strip() == "":
-                st.warning("Please enter your email.")
-            elif "@" not in email or "." not in email:
-                st.warning("Please enter a valid email address.")
-            else:
-                save_login_record(name, email, position)
+if submit:
+    if name.strip() == "":
+        st.warning("Please enter your full name.")
+    elif email.strip() == "":
+        st.warning("Please enter your email address.")
+    elif "@" not in email or "." not in email:
+        st.warning("Please enter a valid email address.")
+    elif position == "Please select your position":
+        st.warning("Please select your position.")
+    else:
+        save_login_record(name, email, position)
 
-                st.session_state.logged_in = True
-                st.session_state.user_name = name
-                st.session_state.user_email = email
-                st.session_state.user_position = position
+        st.session_state.logged_in = True
+        st.session_state.user_name = name
+        st.session_state.user_email = email
+        st.session_state.user_position = position
 
-                st.success("Sign in successful.")
-                st.rerun()
-
+        st.success("Sign in successful.")
+        st.rerun()
+        
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("""
