@@ -128,9 +128,23 @@ div[data-testid="stTextInput"] input::placeholder {
     font-size: 15px !important;
 }
 
-/* Selectbox */
+/* Selectbox - Position box */
+div[data-testid="stSelectbox"] > div > div {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #2563eb !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+}
+
+/* Selectbox text */
 div[data-testid="stSelectbox"] div {
     color: #0f172a !important;
+}
+
+/* Selectbox dropdown arrow */
+div[data-testid="stSelectbox"] svg {
+    color: #2563eb !important;
 }
 
 /* Form submit button */
