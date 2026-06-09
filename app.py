@@ -121,10 +121,10 @@ st.markdown("""
 col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
 
 with col_logo2:
-    if os.path.exists("uthm.logo.png.new"):
-        st.image("uthm.logo.png.new", width=320)
+    if os.path.exists("uthm.logo.jpg.new"):
+        st.image("uthm.logo.jpg.new", width=320)
     else:
-        st.warning("UTHM logo not found. Please upload uthm.logo.png.new to GitHub.")
+        st.warning("UTHM logo not found. Please upload uthm.logo.jpg.new to GitHub.")
 
 st.markdown("""
 <div class="main-title">
