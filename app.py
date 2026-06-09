@@ -238,7 +238,7 @@ if st.session_state.logged_in == False:
         unsafe_allow_html=True
     )
 
-    with st.form("login_form"):
+with st.form("login_form"):
 
     name = st.text_input(
         "Full Name",
