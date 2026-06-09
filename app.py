@@ -21,6 +21,30 @@ st.set_page_config(
 # ============================================================
 
 st.markdown("""
+/* About Project text styling */
+.about-box {
+    background-color: #ffffff;
+    color: #0f172a !important;
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid #dbeafe;
+    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.08);
+    margin-bottom: 24px;
+}
+
+.about-box p,
+.about-box li,
+.about-box h1,
+.about-box h2,
+.about-box h3,
+.about-box strong {
+    color: #0f172a !important;
+}
+
+.about-box p {
+    font-size: 16px;
+    line-height: 1.7;
+}
 <style>
 
 /* Main app background */
@@ -815,6 +839,8 @@ else:
         User Sign In → Dashboard Overview → Forecasting Result → Performance Metrics
         → Energy Management Insight → Report Download
         """)
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================================
 # FOOTER
