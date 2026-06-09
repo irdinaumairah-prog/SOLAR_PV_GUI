@@ -21,43 +21,6 @@ st.set_page_config(
 # ============================================================
 
 st.markdown("""
-/* Input label */
-div[data-testid="stTextInput"] label,
-div[data-testid="stSelectbox"] label {
-    color: #0f172a !important;
-    font-size: 18px !important;
-    font-weight: 700 !important;
-}
-
-/* Text input box */
-div[data-testid="stTextInput"] input {
-    background-color: #ffffff !important;
-    color: #0f172a !important;
-    border: 2px solid #2563eb !important;
-    border-radius: 12px !important;
-    padding: 12px !important;
-    font-size: 16px !important;
-}
-
-/* Placeholder text */
-div[data-testid="stTextInput"] input::placeholder {
-    color: #64748b !important;
-    font-size: 15px !important;
-}
-
-/* Selectbox */
-div[data-testid="stSelectbox"] div {
-    color: #0f172a !important;
-}
-
-/* Sign in button */
-div[data-testid="stFormSubmitButton"] button {
-    background-color: #2563eb !important;
-    color: white !important;
-    border-radius: 10px !important;
-    font-weight: 700 !important;
-    padding: 10px 24px !important;
-}
 <style>
 .stApp {
     background-color: #f8fafc;
@@ -92,12 +55,12 @@ div[data-testid="stFormSubmitButton"] button {
 }
 
 .section-card {
-    background-color: #eff6ff;
-    padding: 30px;
-    border-radius: 22px;
-    border: 2px solid #bfdbfe;
-    box-shadow: 0px 6px 18px rgba(0,0,0,0.10);
-    margin-bottom: 22px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
 }
 
 .info-box {
@@ -155,25 +118,13 @@ div[data-testid="stFormSubmitButton"] button {
 # HEADER WITH CENTER LOGO
 # ============================================================
 
-logo_file = "uthm.logo.jpg.new"
+col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
 
-st.markdown("""
-<div style="
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-">
-""", unsafe_allow_html=True)
-
-if os.path.isfile(logo_file):
-    st.image(logo_file, width=320)
-else:
-    st.error("Logo file not found. Please check the logo filename in GitHub.")
-
-st.markdown("</div>", unsafe_allow_html=True)
+with col_logo2:
+    if os.path.exists("uthm.logo.png.new"):
+        st.image("uthm.logo.png.new", width=320)
+    else:
+        st.warning("UTHM logo not found. Please upload uthm.logo.png.new to GitHub.")
 
 st.markdown("""
 <div class="main-title">
@@ -275,54 +226,43 @@ if st.session_state.logged_in == False:
         unsafe_allow_html=True
     )
 
-with st.form("login_form"):
+    with st.form("login_form"):
 
-    name = st.text_input(
-        "Full Name",
-        placeholder="Example: Siti Irdina Umairah"
-    )
+        name = st.text_input("Full Name")
+        email = st.text_input("Email")
+        position = st.selectbox(
+            "Position",
+            [
+                "Student",
+                "Supervisor",
+                "Lecturer",
+                "Engineer",
+                "Technician",
+                "Management",
+                "Other"
+            ]
+        )
 
-    email = st.text_input(
-        "Email Address",
-        placeholder="Example: sitiirdina@gmail.com"
-    )
+        submit = st.form_submit_button("Sign In")
 
-    position = st.selectbox(
-        "Position",
-        [
-            "Please select your position",
-            "Student",
-            "Supervisor",
-            "Lecturer",
-            "Engineer",
-            "Technician",
-            "Management",
-            "Other"
-        ]
-    )
+        if submit:
+            if name.strip() == "":
+                st.warning("Please enter your full name.")
+            elif email.strip() == "":
+                st.warning("Please enter your email.")
+            elif "@" not in email or "." not in email:
+                st.warning("Please enter a valid email address.")
+            else:
+                save_login_record(name, email, position)
 
-    submit = st.form_submit_button("Sign In")
+                st.session_state.logged_in = True
+                st.session_state.user_name = name
+                st.session_state.user_email = email
+                st.session_state.user_position = position
 
-    if submit:
-        if name.strip() == "":
-            st.warning("Please enter your full name.")
-        elif email.strip() == "":
-            st.warning("Please enter your email address.")
-        elif "@" not in email or "." not in email:
-            st.warning("Please enter a valid email address.")
-        elif position == "Please select your position":
-            st.warning("Please select your position.")
-        else:
-            save_login_record(name, email, position)
+                st.success("Sign in successful.")
+                st.rerun()
 
-            st.session_state.logged_in = True
-            st.session_state.user_name = name
-            st.session_state.user_email = email
-            st.session_state.user_position = position
-
-            st.success("Sign in successful.")
-            st.rerun()
-        
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("""
@@ -337,7 +277,7 @@ with st.form("login_form"):
 # ============================================================
 
 else:
-    
+
     df = load_forecast_data()
 
     st.sidebar.success("Login Successful")
@@ -690,7 +630,7 @@ else:
         st.header("About Project")
 
         st.subheader("Project Title")
-        st.success("Deep Learning-Based Forecasting of Solar PV Output for Industrial Manufacturing Company")
+        st.success("Deep Learning-Based Forecasting of Solar PV Output for Indusrial Manufacturing Company")
 
         st.subheader("Project Description")
         st.write("""
