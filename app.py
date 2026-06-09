@@ -45,7 +45,6 @@ st.markdown("""
     font-size: 16px;
     line-height: 1.7;
 }
-
 /* Global text color for main content */
 section.main,
 section.main p,
@@ -108,7 +107,6 @@ section[data-testid="stSidebar"] * {
 .warning-box * {
     color: inherit !important;
 }
-
 /* Keep main title text white/gold */
 .main-title,
 .main-title h1,
