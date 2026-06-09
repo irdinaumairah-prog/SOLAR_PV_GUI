@@ -23,27 +23,7 @@ st.set_page_config(
 st.markdown("""
 /* About Project text styling */
 {
-    background-color: #ffffff;
-    color: #0f172a !important;
-    padding: 28px;
-    border-radius: 20px;
-    border: 1px solid #dbeafe;
-    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.08);
-    margin-bottom: 24px;
-}
-
-p,
-li,
-h1,
-h2,
-h3,
-strong {
-    color: #0f172a !important;
-}
-
-.about-box p {
-    font-size: 16px;
-    line-height: 1.7;
+  
 }
 <style>
 
