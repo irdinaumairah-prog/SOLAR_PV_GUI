@@ -734,7 +734,7 @@ else:
         else:
             st.info("No user login records available yet.")
 
-    # ========================================================
+        # ========================================================
     # ABOUT PROJECT PAGE
     # ========================================================
 
@@ -743,20 +743,52 @@ else:
         st.header("About Project")
 
         st.subheader("Project Title")
-        st.success("Deep Learning-Based Forecasting of Solar PV Output for Industrial Manufacturing Company")
+        st.success("Deep Learning-Based Forecasting of Solar PV Output for Smart Energy Management")
 
-        st.subheader("Project Description")
+        st.subheader("Project Overview")
         st.write("""
-        This GUI system is developed to display the forecasting result of Solar PV output
-        for an industrial manufacturing company. The system allows users to sign in using
-        their name, email and position before accessing the forecasting dashboard.
+        This project focuses on forecasting Solar PV output using a deep learning approach.
+        Solar PV energy is one of the renewable energy sources that can help reduce dependency
+        on grid electricity, especially for industrial manufacturing companies that use a high
+        amount of electrical energy in daily operations.
         """)
 
         st.write("""
-        The forecasting result is displayed using monthly average data. The system compares
-        actual Solar PV output for 2025 with predicted Solar PV output for 2026. This helps
-        users understand the expected solar energy generation pattern and supports smart
-        energy management decisions.
+        In this project, historical Solar PV data and environmental data are used to identify
+        the pattern of solar energy generation. The forecasting model is developed using Long
+        Short-Term Memory (LSTM), which is a type of deep learning model suitable for time-series
+        forecasting. The model is used to predict the future Solar PV output based on previous
+        data patterns.
+        """)
+
+        st.write("""
+        The result of the forecasting model is displayed through this Graphical User Interface
+        (GUI). The GUI allows users to view the comparison between actual Solar PV output for
+        2025 and predicted Solar PV output for 2026. It also displays performance metrics such
+        as R² Score, MAE and RMSE to evaluate the accuracy of the forecasting model.
+        """)
+
+        st.write("""
+        This system also supports smart energy management by providing useful insights from the
+        forecasting results. For example, the system can identify the month with the highest and
+        lowest predicted Solar PV output. This information can help an industrial manufacturing
+        company plan energy usage more effectively, reduce unnecessary grid dependency and improve
+        energy reliability.
+        """)
+
+        st.subheader("Problem Background")
+        st.write("""
+        Industrial manufacturing companies usually require a large amount of electricity to operate
+        machines, equipment and production systems. Without proper forecasting, it is difficult to
+        estimate how much solar energy can be generated in the future. This may cause inefficient
+        energy planning and higher dependency on grid electricity.
+        """)
+
+        st.subheader("Project Objectives")
+        st.write("""
+        1. To analyze environmental and Solar PV data to identify the pattern of solar energy generation.  
+        2. To develop a deep learning model using LSTM for forecasting Solar PV output.  
+        3. To apply the forecasting results in a simulated smart energy management system for better energy planning.
         """)
 
         st.subheader("GUI Functions")
@@ -773,8 +805,9 @@ else:
 
         st.subheader("System Development Tool")
         st.write("""
-        This GUI is developed using Python and Streamlit. Streamlit is used to create
-        a web-based graphical user interface that can be accessed through a browser.
+        This GUI is developed using Python and Streamlit. Streamlit is used to create a web-based
+        graphical user interface that can be accessed through a browser. The system is deployed
+        using Streamlit Cloud so that users can access the forecasting dashboard through an online link.
         """)
 
         st.subheader("System Flow")
