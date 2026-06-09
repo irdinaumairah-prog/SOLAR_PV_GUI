@@ -32,8 +32,9 @@ st.markdown("""
 }
 
 .subtitle {
-    font-size: 18px;
+    font-size: 23px;
     color: #f0fdfa;
+    font-weight: 500;
 }
 
 .card {
@@ -52,23 +53,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================================
-# HEADER
+# HEADER WITH CENTER LOGO
 # ============================================================
 
-col1, col2, col3 = st.columns([1,3,1])
+col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
-    import os
-
-if os.path.exists("uthm.logo.jpg"):
-    st.image("uthm.logo.jpg", width=130)
-else:
-    st.warning("UTHM logo not found. Please upload uthm.logo.jpg to GitHub.")
+    st.image("uthm.logo.jpg", width=180)
 
 st.markdown("""
 <div class="main-title">
     <h1>Deep Learning-Based Forecasting of Solar PV Output</h1>
-    <p class="subtitle">for Industrrial Manufacturing Company</p>
+    <p class="subtitle">for Industrial Manufacturing Company</p>
     <p class="subtitle"><b>Prepared by:</b> Siti Irdina Umairah</p>
     <p class="subtitle"><b>Universiti Tun Hussein Onn Malaysia</b></p>
 </div>
