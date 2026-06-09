@@ -118,22 +118,25 @@ st.markdown("""
 # HEADER WITH CENTER LOGO
 # ============================================================
 
-col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
-
-with col_logo2:
-    if os.path.exists("uthm.logo.jpg.new"):
-        st.image("uthm.logo.jpg.new", width=380)
-    else:
-        st.warning("UTHM logo not found. Please upload uthm.logo.jpg.new to GitHub.")
+logo_file = "uthm_logo.jpg.new"
 
 st.markdown("""
-<div class="main-title">
-    <h1>Deep Learning-Based Forecasting of Solar PV Output</h1>
-    <p class="subtitle">for Industrial Manufacturing Company</p>
-    <p class="prepared"><b>Prepared by:</b> Siti Irdina Umairah</p>
-    <p class="prepared"><b>Universiti Tun Hussein Onn Malaysia</b></p>
-</div>
+<div style="
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+">
 """, unsafe_allow_html=True)
+
+if os.path.isfile(logo_file):
+    st.image(logo_file, width=380)
+else:
+    st.error("Logo file not found. Please check the logo filename in GitHub.")
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 # ============================================================
 # SESSION STATE
