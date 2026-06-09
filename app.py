@@ -22,18 +22,21 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+
+/* Main app background */
 .stApp {
-    background-color: #f8fafc;
+    background-color: #f4f7fb;
 }
 
+/* Header card */
 .main-title {
-    background: linear-gradient(90deg, #0f172a, #ca8a04);
-    padding: 36px;
-    border-radius: 22px;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #ca8a04);
+    padding: 38px;
+    border-radius: 24px;
     color: white;
     text-align: center;
-    margin-bottom: 25px;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.20);
+    margin-bottom: 28px;
+    box-shadow: 0px 8px 24px rgba(15, 23, 42, 0.25);
 }
 
 .main-title h1 {
@@ -46,97 +49,159 @@ st.markdown("""
     font-size: 23px;
     color: #fef3c7;
     font-weight: 500;
+    margin-bottom: 6px;
 }
 
 .prepared {
-    font-size: 20px;
+    font-size: 19px;
     color: #ffffff;
     font-weight: 500;
+    margin-bottom: 4px;
 }
 
+/* Logo container */
+.logo-card {
+    background-color: #ffffff;
+    padding: 18px;
+    border-radius: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0px 4px 14px rgba(15, 23, 42, 0.10);
+    text-align: center;
+}
+
+/* General section card */
 .section-card {
     background-color: #ffffff;
-    padding: 25px;
-    border-radius: 18px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid #dbeafe;
+    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.08);
+    margin-bottom: 24px;
+}
+
+/* Login page */
+.login-card {
+    background: linear-gradient(135deg, #eff6ff, #ffffff);
+    padding: 34px;
+    border-radius: 24px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 0px 8px 22px rgba(37, 99, 235, 0.12);
+    margin-bottom: 24px;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.login-subtitle {
+    text-align: center;
+    font-size: 17px;
+    color: #475569;
     margin-bottom: 20px;
 }
 
-.info-box {
-    background-color: #ecfeff;
-    padding: 18px;
-    border-radius: 14px;
-    border-left: 6px solid #0891b2;
-    color: #164e63;
-    font-size: 16px;
+/* Streamlit input labels */
+div[data-testid="stTextInput"] label,
+div[data-testid="stSelectbox"] label {
+    color: #0f172a !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
 }
 
-.warning-box {
-    background-color: #fffbeb;
-    padding: 18px;
-    border-radius: 14px;
-    border-left: 6px solid #ca8a04;
-    color: #713f12;
+/* Text input boxes */
+div[data-testid="stTextInput"] input {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #2563eb !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+}
+
+/* Placeholder text */
+div[data-testid="stTextInput"] input::placeholder {
+    color: #64748b !important;
+    font-size: 15px !important;
+}
+
+/* Selectbox */
+div[data-testid="stSelectbox"] div {
+    color: #0f172a !important;
+}
+
+/* Form submit button */
+div[data-testid="stFormSubmitButton"] button {
+    background: linear-gradient(90deg, #1e3a8a, #2563eb) !important;
+    color: white !important;
+    border-radius: 12px !important;
+    font-weight: 800 !important;
+    padding: 11px 28px !important;
+    border: none !important;
+}
+
+/* Info boxes */
+.info-box {
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 16px;
+    border-left: 7px solid #2563eb;
+    color: #1e3a8a;
     font-size: 16px;
+    line-height: 1.6;
 }
 
 .success-box {
     background-color: #ecfdf5;
-    padding: 18px;
-    border-radius: 14px;
-    border-left: 6px solid #059669;
+    padding: 20px;
+    border-radius: 16px;
+    border-left: 7px solid #059669;
     color: #064e3b;
     font-size: 16px;
+    line-height: 1.6;
 }
 
+.warning-box {
+    background-color: #fffbeb;
+    padding: 20px;
+    border-radius: 16px;
+    border-left: 7px solid #ca8a04;
+    color: #713f12;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Footer */
 .footer {
     text-align: center;
     color: #64748b;
     font-size: 14px;
     margin-top: 50px;
     padding-top: 20px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid #cbd5e1;
 }
 
-.login-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    color: #0f172a;
-}
-
-.login-subtitle {
-    text-align: center;
-    font-size: 16px;
-    color: #475569;
-}
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================================
-# HEADER WITH CENTER LOGO
+# HEADER WITH OPTIONAL LOGO
 # ============================================================
 
-logo_file = "uthm.logo.jpg.new"
+st.markdown('<div class="logo-card">', unsafe_allow_html=True)
 
-st.markdown("""
-<div style="
-    text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-">
-""", unsafe_allow_html=True)
-
-if os.path.isfile(logo_file):
-    st.image(logo_file, width=380)
+if os.path.exists("uthm.logo.jpg.new"):
+    st.image("uthm.logo.jpg.new", width=360)
 else:
-    st.error("Logo file not found. Please check the logo filename in GitHub.")
+    st.markdown(
+        "<h3 style='color:#1e3a8a;'>Universiti Tun Hussein Onn Malaysia</h3>",
+        unsafe_allow_html=True
+    )
 
-st.markdown("</div>", unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="main-title">
@@ -230,21 +295,30 @@ def save_login_record(name, email, position):
 
 if st.session_state.logged_in == False:
 
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown('<div class="login-card">', unsafe_allow_html=True)
 
     st.markdown('<p class="login-title">User Sign In</p>', unsafe_allow_html=True)
     st.markdown(
-        '<p class="login-subtitle">Please enter your details before accessing the Solar PV forecasting dashboard.</p>',
+        '<p class="login-subtitle">Please fill in your name, email address and position to access the forecasting dashboard.</p>',
         unsafe_allow_html=True
     )
 
     with st.form("login_form"):
 
-        name = st.text_input("Full Name")
-        email = st.text_input("Email")
+        name = st.text_input(
+            "Full Name",
+            placeholder="Example: Siti Irdina Umairah"
+        )
+
+        email = st.text_input(
+            "Email Address",
+            placeholder="Example: sitiirdina@gmail.com"
+        )
+
         position = st.selectbox(
             "Position",
             [
+                "Please select your position",
                 "Student",
                 "Supervisor",
                 "Lecturer",
@@ -261,9 +335,11 @@ if st.session_state.logged_in == False:
             if name.strip() == "":
                 st.warning("Please enter your full name.")
             elif email.strip() == "":
-                st.warning("Please enter your email.")
+                st.warning("Please enter your email address.")
             elif "@" not in email or "." not in email:
                 st.warning("Please enter a valid email address.")
+            elif position == "Please select your position":
+                st.warning("Please select your position.")
             else:
                 save_login_record(name, email, position)
 
@@ -279,8 +355,9 @@ if st.session_state.logged_in == False:
 
     st.markdown("""
     <div class="info-box">
-        This GUI system allows users to view the Solar PV forecasting results,
-        performance metrics and energy management insights through an interactive dashboard.
+        <b>System Information:</b><br>
+        This GUI system allows users to view Solar PV forecasting results, performance metrics,
+        and smart energy management insights through an interactive web-based dashboard.
     </div>
     """, unsafe_allow_html=True)
 
@@ -292,11 +369,11 @@ else:
 
     df = load_forecast_data()
 
+    # Sidebar user profile
     st.sidebar.success("Login Successful")
     st.sidebar.write(f"👤 **Name:** {st.session_state.user_name}")
     st.sidebar.write(f"📧 **Email:** {st.session_state.user_email}")
     st.sidebar.write(f"💼 **Position:** {st.session_state.user_position}")
-
     st.sidebar.write("---")
 
     menu = st.sidebar.radio(
@@ -378,9 +455,9 @@ else:
 
         st.markdown("""
         <div class="info-box">
-            This dashboard shows the monthly average Solar PV output based on actual data for 2025
-            and predicted data for 2026. The result can help users understand the solar generation
-            pattern and support smart energy management decisions.
+            The dashboard displays monthly average Solar PV output based on actual data for 2025
+            and predicted data for 2026. This helps users understand the solar energy generation
+            trend and supports smart energy management decisions.
         </div>
         """, unsafe_allow_html=True)
 
@@ -394,7 +471,7 @@ else:
 
         st.markdown("""
         <div class="info-box">
-            This section displays the comparison between Actual 2025 and Prediction 2026 Solar PV output.
+            This section shows the comparison between Actual 2025 and Prediction 2026 Solar PV output.
         </div>
         """, unsafe_allow_html=True)
 
@@ -554,7 +631,7 @@ else:
             <b>1. High Solar Generation Period</b><br>
             The highest predicted Solar PV output occurs in <b>{highest_month}</b>.
             During this period, the industrial manufacturing company can schedule high-energy
-            activities when solar generation is expected to be higher.
+            operations when solar generation is expected to be higher.
         </div>
         """, unsafe_allow_html=True)
 
@@ -564,8 +641,8 @@ else:
         <div class="warning-box">
             <b>2. Low Solar Generation Period</b><br>
             The lowest predicted Solar PV output occurs in <b>{lowest_month}</b>.
-            During this period, the company may need to manage energy usage carefully
-            and depend more on grid electricity or backup energy sources.
+            During this period, the company should manage energy usage carefully and may need
+            support from grid electricity or backup energy sources.
         </div>
         """, unsafe_allow_html=True)
 
@@ -582,7 +659,7 @@ else:
 
         st.write("")
 
-        st.subheader("Monthly Forecast Trend")
+        st.subheader("Predicted Solar PV Output Trend")
 
         fig3, ax3 = plt.subplots(figsize=(12, 6))
 
@@ -642,7 +719,7 @@ else:
         st.header("About Project")
 
         st.subheader("Project Title")
-        st.success("Deep Learning-Based Forecasting of Solar PV Output for Indusrial Manufacturing Company")
+        st.success("Deep Learning-Based Forecasting of Solar PV Output for Industrial Manufacturing Company")
 
         st.subheader("Project Description")
         st.write("""
