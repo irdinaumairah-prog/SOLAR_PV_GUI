@@ -138,6 +138,15 @@ else:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
+st.markdown("""
+<div class="main-title">
+    <h1>Deep Learning-Based Forecasting of Solar PV Output</h1>
+    <p class="subtitle">for Smart Energy Management</p>
+    <p class="prepared"><b>Prepared by:</b> Siti Irdina Umairah</p>
+    <p class="prepared"><b>Universiti Tun Hussein Onn Malaysia</b></p>
+</div>
+""", unsafe_allow_html=True)
+
 # ============================================================
 # SESSION STATE
 # ============================================================
