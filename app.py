@@ -11,8 +11,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # ============================================================
 
 st.set_page_config(
-    page_title="Solar PV Forecasting GUI",
-    page_icon="📊",
+    page_title="Solar PV Forecasting System",
+    page_icon="⚡",
     layout="wide"
 )
 
@@ -22,18 +22,24 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+.stApp {
+    background-color: #f8fafc;
+}
+
 .main-title {
     background: linear-gradient(90deg, #0f172a, #ca8a04);
-    padding: 32px;
-    border-radius: 18px;
+    padding: 36px;
+    border-radius: 22px;
     color: white;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.20);
 }
 
 .main-title h1 {
-    font-size: 38px;
-    font-weight: 700;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -42,17 +48,68 @@ st.markdown("""
     font-weight: 500;
 }
 
-.card {
-    background-color: #ffffff;
-    padding: 22px;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+.prepared {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 500;
 }
 
-.small-text {
+.section-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.info-box {
+    background-color: #ecfeff;
+    padding: 18px;
+    border-radius: 14px;
+    border-left: 6px solid #0891b2;
+    color: #164e63;
+    font-size: 16px;
+}
+
+.warning-box {
+    background-color: #fffbeb;
+    padding: 18px;
+    border-radius: 14px;
+    border-left: 6px solid #ca8a04;
+    color: #713f12;
+    font-size: 16px;
+}
+
+.success-box {
+    background-color: #ecfdf5;
+    padding: 18px;
+    border-radius: 14px;
+    border-left: 6px solid #059669;
+    color: #064e3b;
+    font-size: 16px;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.login-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.login-subtitle {
+    text-align: center;
+    font-size: 16px;
     color: #475569;
-    font-size: 15px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -61,17 +118,20 @@ st.markdown("""
 # HEADER WITH CENTER LOGO
 # ============================================================
 
-col1, col2, col3 = st.columns([1, 1, 1])
+col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
 
-with col2:
-    st.image("uthm.logo.jpg.new", width=360)
+with col_logo2:
+    if os.path.exists("uthm.logo.png.new"):
+        st.image("uthm.logo.png.new", width=380)
+    else:
+        st.warning("UTHM logo not found. Please upload uthm.logo.png.new to GitHub.")
 
 st.markdown("""
 <div class="main-title">
     <h1>Deep Learning-Based Forecasting of Solar PV Output</h1>
     <p class="subtitle">for Industrial Manufacturing Company</p>
-    <p class="subtitle"><b>Prepared by:</b> Siti Irdina Umairah</p>
-    <p class="subtitle"><b>Universiti Tun Hussein Onn Malaysia</b></p>
+    <p class="prepared"><b>Prepared by:</b> Siti Irdina Umairah</p>
+    <p class="prepared"><b>Universiti Tun Hussein Onn Malaysia</b></p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -158,9 +218,13 @@ def save_login_record(name, email, position):
 
 if st.session_state.logged_in == False:
 
-    st.subheader("User Sign In")
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
 
-    st.write("Please enter your details before accessing the forecasting dashboard.")
+    st.markdown('<p class="login-title">User Sign In</p>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="login-subtitle">Please enter your details before accessing the Solar PV forecasting dashboard.</p>',
+        unsafe_allow_html=True
+    )
 
     with st.form("login_form"):
 
@@ -199,6 +263,15 @@ if st.session_state.logged_in == False:
                 st.success("Sign in successful.")
                 st.rerun()
 
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="info-box">
+        This GUI system allows users to view the Solar PV forecasting results,
+        performance metrics and energy management insights through an interactive dashboard.
+    </div>
+    """, unsafe_allow_html=True)
+
 # ============================================================
 # MAIN GUI DASHBOARD
 # ============================================================
@@ -207,7 +280,12 @@ else:
 
     df = load_forecast_data()
 
-    st.sidebar.success(f"Logged in as: {st.session_state.user_name}")
+    st.sidebar.success("Login Successful")
+    st.sidebar.write(f"👤 **Name:** {st.session_state.user_name}")
+    st.sidebar.write(f"📧 **Email:** {st.session_state.user_email}")
+    st.sidebar.write(f"💼 **Position:** {st.session_state.user_position}")
+
+    st.sidebar.write("---")
 
     menu = st.sidebar.radio(
         "Navigation Menu",
@@ -215,10 +293,13 @@ else:
             "Dashboard",
             "Forecasting Result",
             "Performance Metrics",
+            "Energy Management Insight",
             "User Login Records",
             "About Project"
         ]
     )
+
+    st.sidebar.write("---")
 
     if st.sidebar.button("Logout"):
         st.session_state.logged_in = False
@@ -238,8 +319,11 @@ else:
         total_month = len(df)
         average_actual = df["Actual_2025"].mean()
         average_prediction = df["Prediction_2026"].mean()
+        total_prediction = df["Prediction_2026"].sum()
+        highest_month = df.loc[df["Prediction_2026"].idxmax(), "Month"]
+        highest_value = df["Prediction_2026"].max()
 
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             st.metric("Total Month", total_month)
@@ -250,6 +334,29 @@ else:
         with col3:
             st.metric("Average Prediction 2026", round(average_prediction, 2))
 
+        with col4:
+            st.metric("Highest Forecast Month", highest_month)
+
+        st.write("")
+
+        col5, col6 = st.columns(2)
+
+        with col5:
+            st.markdown("""
+            <div class="success-box">
+                <b>System Status:</b><br>
+                Forecasting dashboard is active and ready to display Solar PV prediction results.
+            </div>
+            """, unsafe_allow_html=True)
+
+        with col6:
+            st.markdown(f"""
+            <div class="warning-box">
+                <b>Highest Predicted Output:</b><br>
+                {highest_month} shows the highest predicted Solar PV output with a value of {round(highest_value, 2)}.
+            </div>
+            """, unsafe_allow_html=True)
+
         st.write("")
 
         st.subheader("Forecasting Dataset")
@@ -257,10 +364,13 @@ else:
 
         st.write("")
 
-        st.info(
-            "This dashboard shows the monthly average Solar PV output for actual data in 2025 "
-            "and prediction data for 2026."
-        )
+        st.markdown("""
+        <div class="info-box">
+            This dashboard shows the monthly average Solar PV output based on actual data for 2025
+            and predicted data for 2026. The result can help users understand the solar generation
+            pattern and support smart energy management decisions.
+        </div>
+        """, unsafe_allow_html=True)
 
     # ========================================================
     # FORECASTING RESULT PAGE
@@ -270,7 +380,15 @@ else:
 
         st.header("Forecasting Result")
 
-        st.write("This section displays the comparison between Actual 2025 and Prediction 2026.")
+        st.markdown("""
+        <div class="info-box">
+            This section displays the comparison between Actual 2025 and Prediction 2026 Solar PV output.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.subheader("Line Graph: Actual 2025 vs Prediction 2026")
 
         fig, ax = plt.subplots(figsize=(12, 6))
 
@@ -300,6 +418,29 @@ else:
         plt.tight_layout()
 
         st.pyplot(fig)
+
+        st.write("")
+
+        st.subheader("Bar Chart: Monthly Comparison")
+
+        fig2, ax2 = plt.subplots(figsize=(12, 6))
+
+        x = range(len(df["Month"]))
+        width = 0.35
+
+        ax2.bar([i - width/2 for i in x], df["Actual_2025"], width, label="Actual 2025")
+        ax2.bar([i + width/2 for i in x], df["Prediction_2026"], width, label="Prediction 2026")
+
+        ax2.set_title("Monthly Comparison: Actual 2025 vs Prediction 2026")
+        ax2.set_xlabel("Month")
+        ax2.set_ylabel("Solar PV Output")
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(df["Month"], rotation=45)
+        ax2.legend()
+        ax2.grid(axis="y")
+
+        plt.tight_layout()
+        st.pyplot(fig2)
 
         st.subheader("Forecasting Result Table")
         st.dataframe(df, use_container_width=True)
@@ -358,10 +499,105 @@ else:
 
         st.pyplot(fig)
 
-        st.info(
-            "R² Score shows how well the prediction follows the actual data pattern. "
-            "MAE and RMSE show the forecasting error value. Lower MAE and RMSE indicate better model performance."
+        st.markdown("""
+        <div class="info-box">
+            <b>Explanation:</b><br>
+            R² Score shows how well the prediction follows the actual data pattern.
+            MAE and RMSE show the forecasting error value. Lower MAE and RMSE indicate
+            better model performance.
+        </div>
+        """, unsafe_allow_html=True)
+
+    # ========================================================
+    # ENERGY MANAGEMENT INSIGHT PAGE
+    # ========================================================
+
+    elif menu == "Energy Management Insight":
+
+        st.header("Energy Management Insight")
+
+        highest_month = df.loc[df["Prediction_2026"].idxmax(), "Month"]
+        highest_value = df["Prediction_2026"].max()
+        lowest_month = df.loc[df["Prediction_2026"].idxmin(), "Month"]
+        lowest_value = df["Prediction_2026"].min()
+        average_prediction = df["Prediction_2026"].mean()
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.metric("Highest Forecast Month", highest_month)
+
+        with col2:
+            st.metric("Lowest Forecast Month", lowest_month)
+
+        with col3:
+            st.metric("Average Prediction", round(average_prediction, 2))
+
+        st.write("")
+
+        st.subheader("Smart Energy Management Recommendations")
+
+        st.markdown(f"""
+        <div class="success-box">
+            <b>1. High Solar Generation Period</b><br>
+            The highest predicted Solar PV output occurs in <b>{highest_month}</b>.
+            During this period, the industrial manufacturing company can schedule high-energy
+            activities when solar generation is expected to be higher.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.markdown(f"""
+        <div class="warning-box">
+            <b>2. Low Solar Generation Period</b><br>
+            The lowest predicted Solar PV output occurs in <b>{lowest_month}</b>.
+            During this period, the company may need to manage energy usage carefully
+            and depend more on grid electricity or backup energy sources.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.markdown("""
+        <div class="info-box">
+            <b>3. Energy Optimization Strategy</b><br>
+            Forecasting results can help the company plan machine operation, reduce unnecessary
+            grid dependency and improve energy reliability. By knowing the expected Solar PV output,
+            the company can make better decisions for smart energy management.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("")
+
+        st.subheader("Monthly Forecast Trend")
+
+        fig3, ax3 = plt.subplots(figsize=(12, 6))
+
+        ax3.plot(
+            df["Month"],
+            df["Prediction_2026"],
+            marker="o",
+            linewidth=2,
+            label="Prediction 2026"
         )
+
+        ax3.axhline(
+            y=average_prediction,
+            linestyle="--",
+            label="Average Prediction"
+        )
+
+        ax3.set_title("Predicted Solar PV Output Trend for 2026")
+        ax3.set_xlabel("Month")
+        ax3.set_ylabel("Predicted Solar PV Output")
+        ax3.legend()
+        ax3.grid(True)
+
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+
+        st.pyplot(fig3)
 
     # ========================================================
     # USER LOGIN RECORDS PAGE
@@ -394,7 +630,7 @@ else:
         st.header("About Project")
 
         st.subheader("Project Title")
-        st.success("Deep Learning-Based Forecasting of Solar PV Output for Smart Energy Management")
+        st.success("Deep Learning-Based Forecasting of Solar PV Output for Industrial Manufacturing Company")
 
         st.subheader("Project Description")
         st.write("""
@@ -415,9 +651,11 @@ else:
         1. User sign in using name, email and position.  
         2. Display Solar PV forecasting dataset.  
         3. Display Actual 2025 vs Prediction 2026 graph.  
-        4. Calculate and display R² Score, MAE and RMSE.  
-        5. Save user login records automatically.  
-        6. Allow user to download forecasting result and login records.
+        4. Display monthly comparison bar chart.  
+        5. Calculate and display R² Score, MAE and RMSE.  
+        6. Provide smart energy management insights.  
+        7. Save user login records automatically.  
+        8. Allow user to download forecasting result and login records.
         """)
 
         st.subheader("System Development Tool")
@@ -425,3 +663,19 @@ else:
         This GUI is developed using Python and Streamlit. Streamlit is used to create
         a web-based graphical user interface that can be accessed through a browser.
         """)
+
+        st.subheader("System Flow")
+        st.info("""
+        User Sign In → Dashboard Overview → Forecasting Result → Performance Metrics
+        → Energy Management Insight → Report Download
+        """)
+
+# ============================================================
+# FOOTER
+# ============================================================
+
+st.markdown("""
+<div class="footer">
+    © 2026 Solar PV Output Forecasting System | Developed by Siti Irdina Umairah | Universiti Tun Hussein Onn Malaysia
+</div>
+""", unsafe_allow_html=True)
