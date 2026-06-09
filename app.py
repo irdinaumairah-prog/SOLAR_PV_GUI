@@ -22,7 +22,7 @@ st.set_page_config(
 
 st.markdown("""
 /* About Project text styling */
-.about-box {
+{
     background-color: #ffffff;
     color: #0f172a !important;
     padding: 28px;
@@ -32,12 +32,12 @@ st.markdown("""
     margin-bottom: 24px;
 }
 
-.about-box p,
-.about-box li,
-.about-box h1,
-.about-box h2,
-.about-box h3,
-.about-box strong {
+p,
+li,
+h1,
+h2,
+h3,
+strong {
     color: #0f172a !important;
 }
 
