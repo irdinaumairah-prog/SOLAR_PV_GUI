@@ -118,21 +118,23 @@ st.markdown("""
 # HEADER WITH CENTER LOGO
 # ============================================================
 
+logo_file = "uthm_logo.png"
+
 st.markdown("""
 <div style="
     text-align: center;
     background-color: white;
-    padding: 18px;
+    padding: 20px;
     border-radius: 18px;
     margin-bottom: 18px;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
 ">
 """, unsafe_allow_html=True)
 
-if os.path.exists("uthm_logo.png"):
-    st.image("uthm_logo.png", width=260)
+if os.path.isfile(logo_file):
+    st.image(logo_file, width=320)
 else:
-    st.warning("UTHM logo not found. Please upload uthm_logo.png to GitHub.")
+    st.error("Logo file not found. Please check the logo filename in GitHub.")
 
 st.markdown("</div>", unsafe_allow_html=True)
 
