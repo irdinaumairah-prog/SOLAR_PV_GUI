@@ -23,17 +23,22 @@ st.set_page_config(
 st.markdown("""
 <style>
 .main-title {
-    background: linear-gradient(90deg, #0f766e, #14b8a6);
-    padding: 28px;
+    background: linear-gradient(90deg, #0f172a, #ca8a04);
+    padding: 32px;
     border-radius: 18px;
     color: white;
     text-align: center;
     margin-bottom: 20px;
 }
 
+.main-title h1 {
+    font-size: 38px;
+    font-weight: 700;
+}
+
 .subtitle {
-    font-size: 26px;
-    color: #f0fdfa;
+    font-size: 23px;
+    color: #fef3c7;
     font-weight: 500;
 }
 
@@ -59,7 +64,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([1, 1, 1])
 
 with col2:
-    st.image("uthm.logo.jpg.new", width=180)
+    st.image("uthm.logo.jpg.new", width=260)
 
 st.markdown("""
 <div class="main-title">
