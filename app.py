@@ -21,10 +21,6 @@ st.set_page_config(
 # ============================================================
 
 st.markdown("""
-/* About Project text styling */
-{
-  
-}
 <style>
 
 /* Main app background */
