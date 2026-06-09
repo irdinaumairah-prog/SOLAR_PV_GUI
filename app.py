@@ -32,7 +32,7 @@ st.markdown("""
 }
 
 .subtitle {
-    font-size: 28px;
+    font-size: 26px;
     color: #f0fdfa;
     font-weight: 500;
 }
