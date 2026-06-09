@@ -118,13 +118,23 @@ st.markdown("""
 # HEADER WITH CENTER LOGO
 # ============================================================
 
-col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
+st.markdown("""
+<div style="
+    text-align: center;
+    background-color: white;
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+">
+""", unsafe_allow_html=True)
 
-with col_logo2:
-    if os.path.exists("uthm.logo.png.new"):
-        st.image("uthm.logo.png.new", width=360)
-    else:
-        st.warning("UTHM logo not found. Please upload uthm.logo.png.new to GitHub.")
+if os.path.exists("uthm_logo.png"):
+    st.image("uthm_logo.png", width=260)
+else:
+    st.warning("UTHM logo not found. Please upload uthm_logo.png to GitHub.")
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("""
 <div class="main-title">
