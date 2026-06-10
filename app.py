@@ -515,20 +515,22 @@ else:
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.metric("Total Month", total_month)
+    st.metric("Total Month", total_month)
 
-        with col2:
-            st.metric("Average Actual 2025", round(average_actual, 2))
+with col2:
+    st.metric(
+        "Average Actual Solar PV Output 2025",
+        f"{average_actual:,.2f} kWh"
+    )
 
-        with col3:
-            st.metric("Average Prediction 2026", round(average_prediction, 2))
+with col3:
+    st.metric(
+        "Average Predicted Solar PV Output 2026",
+        f"{average_prediction:,.2f} kWh"
+    )
 
-        with col4:
-            st.metric("Highest Forecast Month", highest_month)
-
-        st.write("")
-
-        col5, col6 = st.columns(2)
+with col4:
+    st.metric("Highest Forecast Month", highest_month)
 
         with col5:
             st.markdown("""
