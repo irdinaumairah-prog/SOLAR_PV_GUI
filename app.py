@@ -69,16 +69,6 @@ st.markdown("""
     text-align: center;
 }
 
-/* General section card */
-.section-card {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 22px;
-    border: 1px solid #dbeafe;
-    box-shadow: 0px 6px 18px rgba(15, 23, 42, 0.08);
-    margin-bottom: 24px;
-}
-
 /* Login page */
 .login-card {
     background: linear-gradient(135deg, #eff6ff, #ffffff);
@@ -104,7 +94,7 @@ st.markdown("""
     margin-bottom: 20px;
 }
 
-/* Streamlit input labels */
+/* Input labels */
 div[data-testid="stTextInput"] label,
 div[data-testid="stSelectbox"] label {
     color: #0f172a !important;
@@ -145,13 +135,13 @@ div[data-testid="stSelectbox"] div[data-baseweb="select"] span {
     font-weight: 600 !important;
 }
 
-/* Selectbox placeholder text */
+/* Selectbox text */
 div[data-testid="stSelectbox"] div[data-baseweb="select"] div {
     color: #0f172a !important;
     opacity: 1 !important;
 }
 
-/* Selectbox dropdown arrow */
+/* Selectbox arrow */
 div[data-testid="stSelectbox"] svg {
     color: #2563eb !important;
     fill: #2563eb !important;
@@ -198,16 +188,21 @@ div[data-testid="stFormSubmitButton"] button {
     line-height: 1.6;
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    color: #64748b;
-    font-size: 14px;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #cbd5e1;
+/* Metric card */
+div[data-testid="stMetric"] {
+    background-color: #ffffff !important;
+    padding: 18px !important;
+    border-radius: 16px !important;
+    border: 1px solid #dbeafe !important;
+    box-shadow: 0px 4px 12px rgba(15, 23, 42, 0.08) !important;
 }
-/* Global text color for main content */
+
+div[data-testid="stMetric"] label,
+div[data-testid="stMetric"] div {
+    color: #0f172a !important;
+}
+
+/* Global text color */
 section.main,
 section.main p,
 section.main div,
@@ -222,36 +217,15 @@ section.main h6 {
     color: #0f172a !important;
 }
 
-/* Streamlit markdown text */
 div[data-testid="stMarkdownContainer"] {
     color: #0f172a !important;
 }
 
-/* Headers */
 h1, h2, h3, h4, h5, h6 {
     color: #0f172a !important;
 }
 
-/* Dataframe and table text */
-div[data-testid="stDataFrame"] {
-    color: #0f172a !important;
-}
-
-/* Metric label and value */
-div[data-testid="stMetric"] {
-    background-color: #ffffff !important;
-    padding: 18px !important;
-    border-radius: 16px !important;
-    border: 1px solid #dbeafe !important;
-    box-shadow: 0px 4px 12px rgba(15, 23, 42, 0.08) !important;
-}
-
-div[data-testid="stMetric"] label,
-div[data-testid="stMetric"] div {
-    color: #0f172a !important;
-}
-
-/* Sidebar text */
+/* Sidebar */
 section[data-testid="stSidebar"] {
     background-color: #eaf2ff !important;
 }
@@ -260,16 +234,7 @@ section[data-testid="stSidebar"] * {
     color: #0f172a !important;
 }
 
-/* Info, success and warning text */
-.info-box,
-.info-box *,
-.success-box,
-.success-box *,
-.warning-box,
-.warning-box * {
-    color: inherit !important;
-}
-/* Keep main title text white/gold */
+/* Keep main title white/gold */
 .main-title,
 .main-title h1,
 .main-title p,
@@ -284,6 +249,17 @@ section[data-testid="stSidebar"] * {
 .main-title .prepared {
     color: white !important;
 }
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #cbd5e1;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -293,9 +269,23 @@ section[data-testid="stSidebar"] * {
 
 st.markdown('<div class="logo-card">', unsafe_allow_html=True)
 
-if os.path.exists("uthm.logo.jpg.new"):
-    st.image("uthm.logo.jpg.new", width=360)
-else:
+logo_files = [
+    "uthm.logo.jpg.new",
+    "uthm_logo.png",
+    "uthm_logo.jpg",
+    "UTHM_LOGO.png",
+    "UTHM_LOGO.jpg"
+]
+
+logo_found = False
+
+for logo in logo_files:
+    if os.path.exists(logo):
+        st.image(logo, width=360)
+        logo_found = True
+        break
+
+if logo_found == False:
     st.markdown(
         "<h3 style='color:#1e3a8a;'>Universiti Tun Hussein Onn Malaysia</h3>",
         unsafe_allow_html=True
@@ -416,18 +406,18 @@ if st.session_state.logged_in == False:
         )
 
         position = st.selectbox(
-    "Position",
-    [
-        "Select your position",
-        "Student",
-        "Supervisor",
-        "Lecturer",
-        "Engineer",
-        "Technician",
-        "Management",
-        "Other"
-    ]
-)
+            "Position",
+            [
+                "Select your position",
+                "Student",
+                "Supervisor",
+                "Lecturer",
+                "Engineer",
+                "Technician",
+                "Management",
+                "Other"
+            ]
+        )
 
         submit = st.form_submit_button("Sign In")
 
@@ -438,7 +428,7 @@ if st.session_state.logged_in == False:
                 st.warning("Please enter your email address.")
             elif "@" not in email or "." not in email:
                 st.warning("Please enter a valid email address.")
-            elif position == "Please select your position":
+            elif position == "Select your position":
                 st.warning("Please select your position.")
             else:
                 save_login_record(name, email, position)
@@ -501,7 +491,7 @@ else:
     # DASHBOARD PAGE
     # ========================================================
 
-        if menu == "Dashboard":
+    if menu == "Dashboard":
 
         st.header("Dashboard Overview")
 
@@ -582,7 +572,7 @@ else:
 
         st.markdown("""
         <div class="info-box">
-            This section shows the comparison between Actual 2025 and Prediction 2026 Solar PV output.
+            This section shows the comparison between Actual Solar PV Output 2025 and Predicted Solar PV Output 2026.
         </div>
         """, unsafe_allow_html=True)
 
@@ -610,7 +600,7 @@ else:
 
         ax.set_title("Monthly Average Solar PV Output: Actual 2025 vs Prediction 2026")
         ax.set_xlabel("Month")
-        ax.set_ylabel("Solar PV Output")
+        ax.set_ylabel("Solar PV Output (kWh)")
         ax.legend()
         ax.grid(True)
 
@@ -633,7 +623,7 @@ else:
 
         ax2.set_title("Monthly Comparison: Actual 2025 vs Prediction 2026")
         ax2.set_xlabel("Month")
-        ax2.set_ylabel("Solar PV Output")
+        ax2.set_ylabel("Solar PV Output (kWh)")
         ax2.set_xticks(x)
         ax2.set_xticklabels(df["Month"], rotation=45)
         ax2.legend()
@@ -692,7 +682,7 @@ else:
 
         fig, ax = plt.subplots(figsize=(8, 5))
         ax.bar(metric_df["Metric"], metric_df["Value"])
-        ax.set_title("Model Performance Metrics")
+        ax.set_title("Comparison of Model Performance Metrics")
         ax.set_xlabel("Metric")
         ax.set_ylabel("Value")
         plt.tight_layout()
@@ -704,7 +694,8 @@ else:
             <b>Explanation:</b><br>
             R² Score shows how well the prediction follows the actual data pattern.
             MAE and RMSE show the forecasting error value. Lower MAE and RMSE indicate
-            better model performance.
+            better model performance. The graph shown is a bar chart, not a histogram,
+            because it compares different evaluation metrics.
         </div>
         """, unsafe_allow_html=True)
 
@@ -731,7 +722,10 @@ else:
             st.metric("Lowest Forecast Month", lowest_month)
 
         with col3:
-            st.metric("Average Prediction", round(average_prediction, 2))
+            st.metric(
+                label="Average Predicted Solar PV Output 2026",
+                value=f"{average_prediction:,.2f} kWh"
+            )
 
         st.write("")
 
@@ -740,9 +734,10 @@ else:
         st.markdown(f"""
         <div class="success-box">
             <b>1. High Solar Generation Period</b><br>
-            The highest predicted Solar PV output occurs in <b>{highest_month}</b>.
-            During this period, the industrial manufacturing company can schedule high-energy
-            operations when solar generation is expected to be higher.
+            The highest predicted Solar PV output occurs in <b>{highest_month}</b>
+            with a value of <b>{highest_value:,.2f} kWh</b>. During this period,
+            the industrial manufacturing company can schedule high-energy operations
+            when solar generation is expected to be higher.
         </div>
         """, unsafe_allow_html=True)
 
@@ -751,9 +746,10 @@ else:
         st.markdown(f"""
         <div class="warning-box">
             <b>2. Low Solar Generation Period</b><br>
-            The lowest predicted Solar PV output occurs in <b>{lowest_month}</b>.
-            During this period, the company should manage energy usage carefully and may need
-            support from grid electricity or backup energy sources.
+            The lowest predicted Solar PV output occurs in <b>{lowest_month}</b>
+            with a value of <b>{lowest_value:,.2f} kWh</b>. During this period,
+            the company should manage energy usage carefully and may need support
+            from grid electricity or backup energy sources.
         </div>
         """, unsafe_allow_html=True)
 
@@ -764,7 +760,7 @@ else:
             <b>3. Energy Optimization Strategy</b><br>
             Forecasting results can help the company plan machine operation, reduce unnecessary
             grid dependency and improve energy reliability. By knowing the expected Solar PV output,
-            the company can make better decisions for smart energy management.
+            the company can make better decisions for energy planning.
         </div>
         """, unsafe_allow_html=True)
 
@@ -790,7 +786,7 @@ else:
 
         ax3.set_title("Predicted Solar PV Output Trend for 2026")
         ax3.set_xlabel("Month")
-        ax3.set_ylabel("Predicted Solar PV Output")
+        ax3.set_ylabel("Predicted Solar PV Output (kWh)")
         ax3.legend()
         ax3.grid(True)
 
@@ -848,10 +844,10 @@ else:
         st.markdown(
             """
             <p style="color:#0f172a; font-size:16px; line-height:1.7;">
-            In this project, the data were collected from previous year 2025, covering the period from January to December. 
-            The dataset underwent data processing and cleaning to ensure data quality before being used for Deep Learning Development.
-            The input variables are Solar Irradiance, Humidity, Temperature and Energy Consumption.
-            The forecasting model is developed using Long Short-Term Memory (LSTM), which is suitable for time-series forecasting.
+            In this project, the data were collected from the previous year, 2025, covering the period
+            from January to December. The dataset underwent data processing and cleaning to ensure data
+            quality before being used for deep learning development. The input variables are Solar
+            Irradiance, Humidity, Temperature and Energy Consumption.
             </p>
             """,
             unsafe_allow_html=True
@@ -860,10 +856,11 @@ else:
         st.markdown(
             """
             <p style="color:#0f172a; font-size:16px; line-height:1.7;">
-            The forecasting result is displayed through this Graphical User Interface (GUI).
-            The GUI allows users to view the comparison between actual Solar PV output for 2025
-            and predicted Solar PV output for 2026. It also displays performance metrics such as
-            R² Score, MAE and RMSE to evaluate the model performance.
+            The forecasting model is developed using Long Short-Term Memory (LSTM), which is suitable
+            for time-series forecasting. The forecasting result is displayed through this Graphical
+            User Interface (GUI). The GUI allows users to view the comparison between actual Solar PV
+            output for 2025 and predicted Solar PV output for 2026. It also displays performance metrics
+            such as R² Score, MAE and RMSE to evaluate the model performance.
             </p>
             """,
             unsafe_allow_html=True
@@ -887,10 +884,11 @@ else:
             """
             <ol style="color:#0f172a; font-size:16px; line-height:1.7;">
                 <li>To collect and prepare data from January to December 2025 through data processing and cleaning.
-                    The input data consist of Solar Irradiance, Humidity, Temperature and Energy Consumption, while the output data represent Solar PV Output.</li>
+                    The input data consist of Solar Irradiance, Humidity, Temperature and Energy Consumption, while
+                    the output data represent Solar PV Output.</li>
                 <li>To develop a deep learning model using LSTM for forecasting Solar PV output based on input data.</li>
-                <li>To verify the forecasting results with experts to ensure that the data is capable of providing reliable predictions
-                    and can be used by industrial manufacturing companies for better energy planning.</li>
+                <li>To verify the forecasting results with experts to ensure that the results are reliable and can be used
+                    by industrial manufacturing companies for better energy planning.</li>
             </ol>
             """,
             unsafe_allow_html=True
@@ -905,7 +903,7 @@ else:
                 <li>Display Actual 2025 vs Prediction 2026 graph.</li>
                 <li>Display monthly comparison bar chart.</li>
                 <li>Display R² Score, MAE and RMSE.</li>
-                <li>Provide smart energy management insights.</li>
+                <li>Provide energy management insights.</li>
                 <li>Save user login records automatically.</li>
                 <li>Allow users to download forecasting result and login records.</li>
             </ol>
@@ -913,14 +911,15 @@ else:
             unsafe_allow_html=True
         )
 
-        st.subheader("Smart Energy Management Application")
+        st.subheader("Application of Forecasting Results")
         st.markdown(
             """
             <p style="color:#0f172a; font-size:16px; line-height:1.7;">
             The forecasting result can help the industrial manufacturing company plan energy usage
-            more effectively. For example, high-energy operations can be scheduled during periods
-            with higher predicted Solar PV output. This can help optimize solar energy utilization,
-            reduce unnecessary grid dependency and improve energy reliability.
+            more effectively. By knowing the expected Solar PV output, the company can identify
+            periods of high and low solar energy generation. This information can support load
+            planning, optimize solar energy utilization, reduce unnecessary dependency on grid
+            electricity and improve energy reliability.
             </p>
             """,
             unsafe_allow_html=True
