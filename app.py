@@ -819,7 +819,7 @@ else:
         st.header("About Project")
 
         st.subheader("Project Title")
-        st.success("Deep Learning-Based Forecasting of Solar PV Output for Smart Energy Management")
+        st.success("Deep Learning-Based Forecasting of Solar PV Output for Industrial Manufacturing Company")
 
         st.subheader("Project Overview")
         st.markdown(
@@ -837,9 +837,10 @@ else:
         st.markdown(
             """
             <p style="color:#0f172a; font-size:16px; line-height:1.7;">
-            In this project, historical Solar PV data and environmental data are used to identify
-            the pattern of solar energy generation. The forecasting model is developed using
-            Long Short-Term Memory (LSTM), which is suitable for time-series forecasting.
+            In this project, the data were collected from previous year 2025, covering the period from January to December. 
+            The dataset underwent data processing and cleaning to ensure data quality before being used for Deep Learning Development.
+            The input variables are Solar Irradiance, Humidity, Temperature and Energy Consumption.
+            The forecasting model is developed using Long Short-Term Memory (LSTM), which is suitable for time-series forecasting.
             </p>
             """,
             unsafe_allow_html=True
@@ -874,9 +875,11 @@ else:
         st.markdown(
             """
             <ol style="color:#0f172a; font-size:16px; line-height:1.7;">
-                <li>To analyze environmental and Solar PV data to identify the pattern of solar energy generation.</li>
-                <li>To develop a deep learning model using LSTM for forecasting Solar PV output.</li>
-                <li>To apply the forecasting results in a simulated smart energy management system for better energy planning.</li>
+                <li>To collect and prepare data from January to December 2025 through data processing and cleaning.
+                    The input data consist of Solar Irradiance, Humidity, Temperature and Energy Consumption, while the output data represent Solar PV Output.</li>
+                <li>To develop a deep learning model using LSTM for forecasting Solar PV output based on input data.</li>
+                <li>To verify the forecasting results with experts to ensure that the data is capable of providing reliable predictions
+                    and can be used by industrial manufacturing companies for better energy planning.</li>
             </ol>
             """,
             unsafe_allow_html=True
