@@ -512,24 +512,31 @@ else:
         highest_month = df.loc[df["Prediction_2026"].idxmax(), "Month"]
         highest_value = df["Prediction_2026"].max()
 
-        col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.metric("Total Month", total_month)
+                col1, col2, col3, col4 = st.columns(4)
 
-with col2:
-    st.metric(
-        "Average Actual Solar PV Output 2025",
-        f"{average_actual:,.2f} kWh"
-    )
+        with col1:
+            st.metric(
+                label="Total Month",
+                value=total_month
+            )
 
-with col3:
-    st.metric(
-        "Average Predicted Solar PV Output 2026",
-        f"{average_prediction:,.2f} kWh"
-    )
+        with col2:
+            st.metric(
+                label="Average Actual Solar PV Output 2025",
+                value=f"{average_actual:,.2f} kWh"
+            )
 
-with col4:
-    st.metric("Highest Forecast Month", highest_month)
+        with col3:
+            st.metric(
+                label="Average Predicted Solar PV Output 2026",
+                value=f"{average_prediction:,.2f} kWh"
+            )
+
+        with col4:
+            st.metric(
+                label="Highest Forecast Month",
+                value=highest_month
+            )
     
         with col5:
             st.markdown("""
