@@ -530,7 +530,6 @@ with col3:
 
 with col4:
     st.metric("Highest Forecast Month", highest_month)
-    )
         with col5:
             st.markdown("""
             <div class="success-box">
