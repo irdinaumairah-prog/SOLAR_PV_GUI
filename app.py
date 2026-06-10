@@ -501,18 +501,17 @@ else:
     # DASHBOARD PAGE
     # ========================================================
 
-    if menu == "Dashboard":
+        if menu == "Dashboard":
 
         st.header("Dashboard Overview")
 
         total_month = len(df)
         average_actual = df["Actual_2025"].mean()
         average_prediction = df["Prediction_2026"].mean()
-        total_prediction = df["Prediction_2026"].sum()
         highest_month = df.loc[df["Prediction_2026"].idxmax(), "Month"]
         highest_value = df["Prediction_2026"].max()
 
-                col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
             st.metric(
@@ -537,7 +536,11 @@ else:
                 label="Highest Forecast Month",
                 value=highest_month
             )
-    
+
+        st.write("")
+
+        col5, col6 = st.columns(2)
+
         with col5:
             st.markdown("""
             <div class="success-box">
@@ -547,12 +550,12 @@ else:
             """, unsafe_allow_html=True)
 
         with col6:
-    st.markdown(f"""
-    <div class="warning-box">
-        <b>Highest Predicted Output:</b><br>
-        {highest_month} shows the highest predicted Solar PV output with a value of {highest_value:,.2f} kWh.
-    </div>
-    """, unsafe_allow_html=True)
+            st.markdown(f"""
+            <div class="warning-box">
+                <b>Highest Predicted Output:</b><br>
+                {highest_month} shows the highest predicted Solar PV output with a value of {highest_value:,.2f} kWh.
+            </div>
+            """, unsafe_allow_html=True)
 
         st.write("")
 
@@ -563,7 +566,7 @@ else:
 
         st.markdown("""
         <div class="info-box">
-            The dashboard displays monthly average Solar PV output based on actual data for 2025
+            The dashboard displays monthly average Solar PV output in kWh based on actual data for 2025
             and predicted data for 2026. This helps users understand the solar energy generation
             trend and supports smart energy management decisions.
         </div>
