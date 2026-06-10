@@ -530,6 +530,7 @@ with col3:
 
 with col4:
     st.metric("Highest Forecast Month", highest_month)
+    
         with col5:
             st.markdown("""
             <div class="success-box">
@@ -539,12 +540,12 @@ with col4:
             """, unsafe_allow_html=True)
 
         with col6:
-            st.markdown(f"""
-            <div class="warning-box">
-                <b>Highest Predicted Output:</b><br>
-                {highest_month} shows the highest predicted Solar PV output with a value of {round(highest_value, 2)}.
-            </div>
-            """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class="warning-box">
+        <b>Highest Predicted Output:</b><br>
+        {highest_month} shows the highest predicted Solar PV output with a value of {highest_value:,.2f} kWh.
+    </div>
+    """, unsafe_allow_html=True)
 
         st.write("")
 
